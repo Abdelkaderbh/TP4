@@ -52,7 +52,7 @@ postRouter.delete('/delete/:id',async(req,res)=>{
 postRouter.put('/update/:id',async(req,res)=>{
     try{    
         const id = req.params.id;
-        const contenu = req.params.contenu
+        const contenu = req.body.contenu
         await Post.findByIdAndUpdate(id,{
             $set:{contenu:contenu}
         });
