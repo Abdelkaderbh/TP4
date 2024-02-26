@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const post = require('./routes/post');
 dotenv.config()
 const MONGODB_URL=process.env.DATABASE_URL;
+
 //if port is not working it will change and try the piped port
 const PORT = process.env.PORT || 5000;
 

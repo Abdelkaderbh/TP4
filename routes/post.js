@@ -41,8 +41,22 @@ postRouter.get('/:id',async(req,res)=>{
 postRouter.delete('/delete/:id',async(req,res)=>{
     try{
         const id = req.params.id;
-        await Post.findOneAndDelete(id);
+        await Post.findByIdAndDelete(id);
         res.status(200).send(' DELETED ! ')
+    }catch(err){
+        res.status(400).send(err.message)
+    }
+})
+
+
+postRouter.put('/update/:id',async(req,res)=>{
+    try{    
+        const id = req.params.id;
+        const contenu = req.params.contenu
+        await Post.findByIdAndUpdate(id,{
+            $set:{contenu:contenu}
+        });
+        res.status(200).send(' UPDATED !')
     }catch(err){
         res.status(400).send(err.message)
     }
