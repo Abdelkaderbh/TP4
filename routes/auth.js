@@ -4,9 +4,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
-
-
-
 router.post('/register',async (req,res)=>{
     try {
         //Destructuring assignment ES6
