@@ -27,5 +27,16 @@ postRouter.get('/all', async (req,res)=>{
 })
 
 
+postRouter.get('/:id',async(req,res)=>{
+    try{
+        const id=req.params.id;
+        const postById = await Post.findById(id);
+        res.status(200).send(postById);
+    }catch(err){
+        res.status(400).send(err.message)
+    }
+})
+
+
 
 module.exports = postRouter;
