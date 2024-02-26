@@ -38,5 +38,15 @@ postRouter.get('/:id',async(req,res)=>{
 })
 
 
+postRouter.delete('/delete/:id',async(req,res)=>{
+    try{
+        const id = req.params.id;
+        await Post.findOneAndDelete(id);
+        res.status(200).send(' DELETED ! ')
+    }catch(err){
+        res.status(400).send(err.message)
+    }
+})
+
 
 module.exports = postRouter;
