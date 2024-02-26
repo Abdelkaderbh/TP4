@@ -16,5 +16,16 @@ postRouter.post('/add', async (req, res) => {
 });
 
 
+postRouter.get('/all', async (req,res)=>{
+    try{
+        const posts = await Post.find();
+        res.status(200).send(posts);
+
+    }catch(err){
+        res.status(400).send(err.message)
+    }
+})
+
+
 
 module.exports = postRouter;
