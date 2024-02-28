@@ -31,7 +31,7 @@ postRouter.get('/:id',async(req,res)=>{
     try{
         const id=req.params.id;
         const postById = await Post.findById(id);
-        res.status(200).send(postById);
+        postById ? res.status(200).send(postById) : res.status(400).send('Id not found');
     }catch(err){
         res.status(400).send(err.message)
     }
@@ -41,8 +41,8 @@ postRouter.get('/:id',async(req,res)=>{
 postRouter.delete('/delete/:id',async(req,res)=>{
     try{
         const id = req.params.id;
-        await Post.findByIdAndDelete(id);
-        res.status(200).send(' DELETED ! ')
+        const postById = await Post.findByIdAndDelete(id);
+        postById ? res.status(200).send(' DELETED ! ') : res.status(400).send('Id not found')
     }catch(err){
         res.status(400).send(err.message)
     }

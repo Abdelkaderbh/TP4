@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const post = require('./routes/post');
+const user=require('./models/user');
 dotenv.config()
 const MONGODB_URL=process.env.DATABASE_URL;
 
@@ -21,5 +22,6 @@ mongoose.connect(MONGODB_URL).then(()=>{
 
 
 //using router and parser
-app.use(express.json())
-app.use('/post',post)
+app.use(express.json());
+app.use('/post',post);
+app.use('/auth',user);
