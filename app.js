@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const post = require('./routes/post');
-const user=require('./models/user');
+const user=require('./routes/auth');
 dotenv.config()
 const MONGODB_URL=process.env.DATABASE_URL;
 

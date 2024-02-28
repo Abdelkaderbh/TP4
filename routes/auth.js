@@ -16,8 +16,19 @@ router.post('/register',async (req,res)=>{
     }
 });
 
-
-
+router.post('/login',async (req,res)=>{
+    try{
+        const {username,password} = req.body;
+        const user = await User.findOne({username:username});
+        const passwordValidate = await bcrypt.compare(password,user.password);
+        passwordValidate ? res.status(200).send(`WELCOME ${user.username}`) :res.status(401).send('WRONG PASSWORD')
+    }catch(err){
+        res.status(400).send(err.message);
+    }
+})
 
 //login
 //model Post + CRUD
+
+
+module.exports = router;

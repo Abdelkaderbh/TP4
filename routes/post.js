@@ -20,7 +20,6 @@ postRouter.get('/all', async (req,res)=>{
     try{
         const posts = await Post.find();
         res.status(200).send(posts);
-
     }catch(err){
         res.status(400).send(err.message)
     }
@@ -53,10 +52,10 @@ postRouter.put('/update/:id',async(req,res)=>{
     try{    
         const id = req.params.id;
         const contenu = req.body.contenu
-        await Post.findByIdAndUpdate(id,{
+        const postById = await Post.findByIdAndUpdate(id,{
             $set:{contenu:contenu}
         });
-        res.status(200).send(' UPDATED !')
+        postById ? res.status(200).send(' UPDATED !') : res.status(400).send(' Id not found !')
     }catch(err){
         res.status(400).send(err.message)
     }
